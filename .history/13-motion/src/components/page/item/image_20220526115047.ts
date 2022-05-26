@@ -1,8 +1,9 @@
-import { BaseComponent } from '../../component.js';
+import { BaseComponent, Component } from '../../component.js';
 
-export class ImageComponent extends BaseComponent<
-  HTMLImageElement | HTMLParagraphElement
-> {
+export class ImageComponent
+  extends BaseComponent<HTMLImageElement | HTMLParagraphElement>
+  implements Component
+{
   constructor(title: string, url: string) {
     super(`<section class="image">
     <div class="image__holder">

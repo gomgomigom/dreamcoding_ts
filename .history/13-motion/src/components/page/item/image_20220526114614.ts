@@ -20,6 +20,5 @@ export class ImageComponent extends BaseComponent<
     const imageTitle = this.element.querySelector(
       '.image__title'
     )! as HTMLParagraphElement;
-    imageTitle.textContent = title;
   }
 }
