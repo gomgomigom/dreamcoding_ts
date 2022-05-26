@@ -1,0 +1,3 @@
+class PageComponent {
+  constructor();
+}
