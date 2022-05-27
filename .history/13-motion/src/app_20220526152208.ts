@@ -1,5 +1,4 @@
 import { ImageComponent } from './components/page/item/image.js';
-import { VideoComponent } from './components/page/item/video.js';
 import { PageComponent } from './components/page/page.js';
 
 class App {
@@ -16,9 +15,8 @@ class App {
 
     const video = new VideoComponent(
       'you-tube title',
-      'https://www.youtube.com/embed/yA4d5ZydVVQ'
+      'https://www.youtube.com/watch?v=yA4d5ZydVVQ&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9'
     );
-    video.attachTo(appRoot, 'beforeend');
   }
 }
 
