@@ -3,32 +3,36 @@ import { BaseComponent } from '../../component.js';
 export class VideoComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`<section class="video">
-    <div class="video__holder">
-    <iframe width="800" height="500" class="video__thumbnail" src="https://www.youtube.com/embed/yA4d5ZydVVQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="video__player">
+    <iframe width="800" height="500" class="video__iframe" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <p class="video__title"></p>
+    <h3 class="video__title"></h3>
   </section>
   `);
 
     const videoElement = this.element.querySelector(
-      '.video__thumbnail'
-    )! as HTMLVideoElement;
+      '.video__iframe'
+    )! as HTMLIFrameElement;
 
     videoElement.src = this.convertedUrl(url);
 
     const videoTitle = this.element.querySelector(
       '.video__title'
-    )! as HTMLParagraphElement;
+    )! as HTMLHeadingElement;
     videoTitle.textContent = title;
   }
 
   private convertedUrl(url: string): string {
     const regExp =
-      /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/gm;
-    const matchedUrl = url.match(regExp);
-    const videoId = matchedUrl ? matchedUrl[1] : undefined;
-    console.log(matchedUrl);
+      /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/;
+    const match = url.match(regExp);
+    const videoId = match ? match[1] || match[2] : undefined;
+    console.log(match);
+    console.log('---');
     console.log(videoId);
-    return `https://www.youtube.com/embed/${videoId}`;
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return url;
   }
 }
