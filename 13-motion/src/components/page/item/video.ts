@@ -24,9 +24,9 @@ export class VideoComponent extends BaseComponent<HTMLElement> {
 
   private convertedUrl(url: string): string {
     const regExp =
-      /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube\.com\/)|(?:youtu\.be\/))?(?:(?:watch\?v=)|(?:embed\/))?(.{11})/gm;
+      /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/gm;
     const matchedUrl = url.match(regExp);
-    const videoId = matchedUrl ? matchedUrl[0] : undefined;
+    const videoId = matchedUrl ? matchedUrl[1] : undefined;
     console.log(matchedUrl);
     console.log(videoId);
     return `https://www.youtube.com/embed/${videoId}`;
